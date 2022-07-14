@@ -10,7 +10,7 @@ builder.Services.AddAuthentication(opt => {
 })
 .AddJwtBearer(options =>
 {
-    options.Authority = "https://auth.example.com";
+    options.Authority = "https://localhost:9031";
     options.Audience = "http://localhost:5000";
 });
 
@@ -38,4 +38,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-

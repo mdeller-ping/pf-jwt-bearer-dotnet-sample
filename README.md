@@ -11,7 +11,7 @@ Demonstrates using PingFederate as the JWT provider for an ASP.Net API.  This sa
 
 ## Assumptions
 
-Your PingFederate runtime is available at the URL https://auth.example.com.  You are running this sample dotnet application locally, and it will be available at http://localhost:5000.  Update accordingly.
+Your PingFederate runtime is available at the URL https://localhost:9031.  You are running this sample dotnet application locally, and it will be available at http://localhost:5000.  Update accordingly.
 
 ## PingFederate Access Token Manager
 
@@ -22,7 +22,7 @@ We need an Access Token Manager of type JSON Web Token in PingFederate.  Default
 * Type - Type: JSON Web Tokens
 * Instance Configuration - Use Centralized Signing Key: Enabled
 * Instance Configuration - JWS Algorithm: RSA using SHA-256
-* Instance Configuration (Advanced) - Issuer Claim Value: https://auth.example.com
+* Instance Configuration (Advanced) - Issuer Claim Value: https://localhost:9031
 * Instance Configuration (Advanced) - Audience Claim Value: http://localhost:5000
 * Access Token Attribute Contract - Extend the Contract: sub
 
@@ -50,7 +50,7 @@ The Issuer (aka Authority) and Audience values are hard coded in pf-jwt-bearer-d
 ```
 .AddJwtBearer(options =>
 {
-    options.Authority = "https://auth.example.com";
+    options.Authority = "https://localhost:9031";
     options.Audience = "http://localhost:5000";
 });
 ```
@@ -68,7 +68,7 @@ dotnet run
 In a different terminal window or command prompt:
 
 ```
-curl --location --request POST 'https://auth.example.com/as/token.oauth2' \
+curl --location --request POST 'https://localhost:9031/as/token.oauth2' \
   --insecure \
   --header 'Content-Type: application/x-www-form-urlencoded' \
   --data-urlencode 'client_id=sampleClient' \
@@ -79,9 +79,9 @@ curl --location --request POST 'https://auth.example.com/as/token.oauth2' \
 ## Use your Token
 
 ```
-curl -H 'Accept: application/json' \
+curl --location --request GET 'http://localhost:5000/WeatherForecast' \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer YOUR_JWT_FROM_PRIOR_STEP' \
   --insecure \
-  --verbose \
-  -H "Authorization: Bearer YOUR_JWT_FROM_PRIOR_STEP" \
-  http://localhost:5000/WeatherForecast
+  --verbose
 ```
