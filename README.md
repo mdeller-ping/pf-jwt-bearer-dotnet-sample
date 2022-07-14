@@ -34,7 +34,19 @@ An OAuth Client with the grant type of Client Credentials is also required:
 * Allowed Grant Types: Client Credentials
 * Default Access Token Manager: sampleJWT
 
+## Clone and run this sample
+
+In a terminal window or command prompt:
+
+```
+git clone https://github.com/mdeller-ping/pf-jwt-bearer-dotnet-sample.git
+cd pf-jwt-bearer-dotnet-sample/pf-jwt-bearer-dotnet-sample
+dotnet run
+```
+
 ## Get a Token
+
+In a different terminal window or command prompt:
 
 ```
 curl --location --request POST 'https://auth.example.com/as/token.oauth2' \
@@ -43,4 +55,11 @@ curl --location --request POST 'https://auth.example.com/as/token.oauth2' \
 --data-urlencode 'client_secret=verySecretPasswordYouPick' \
 --data-urlencode 'response_type=token' \
 --data-urlencode 'grant_type=client_credentials'
+```
+## Use your Token
+
+```
+curl -H 'Accept: application/json' \
+  -H "Authorization: Bearer YOUR_JWT_FROM_PRIOR_STEP" \
+  http://localhost:5000/WeatherForecast --verbose
 ```
