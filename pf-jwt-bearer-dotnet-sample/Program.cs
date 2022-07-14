@@ -10,8 +10,8 @@ builder.Services.AddAuthentication(opt => {
 })
 .AddJwtBearer(options =>
 {
-    options.Authority = "https://mdeller-pingfederate-engine.ping-devops.com";
-    options.Audience = "https://mdeller-pingfederate-engine.ping-devops.com";
+    options.Authority = "https://auth.example.com";
+    options.Audience = "http://localhost:5000";
 });
 
 // End JSON Web Token Stuff

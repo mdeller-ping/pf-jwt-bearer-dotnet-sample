@@ -9,7 +9,7 @@ Demonstrates using PingFederate as the JWT provider for an ASP.Net REST API
 
 ## Assumptions
 
-Your PingFederate runtime is available at the URL https://auth.example.com.  Anytime you see this URL below, you'll want to update it to align with your reality.
+Your PingFederate runtime is available at the URL https://auth.example.com.  You are running this sample dotnet application locally, and it will be available at http://localhost:5000.  Update accordingly.
 
 ## PingFederate Access Token Manager
 
@@ -20,8 +20,8 @@ We need an Access Token Manager of type JSON Web Token in PingFederate.  Default
 * Type - Type: JSON Web Tokens
 * Instance Configuration - Use Centralized Signing Key: Enabled
 * Instance Configuration - JWS Algorithm: RSA using SHA-256
-* Instance Configuration (Advanced) - Issuer Claim Value: Your PingFederate Runtime URL (e.g., https://auth.example.com)
-* Instance Configuration (Advanced) - Audience Claim Value: Your Application URL (e.g., https://api.example.com)
+* Instance Configuration (Advanced) - Issuer Claim Value: https://auth.example.com
+* Instance Configuration (Advanced) - Audience Claim Value: http://localhost:5000
 
 ## PingFederate OAuth Client
 
