@@ -89,7 +89,7 @@ curl --location --request GET 'http://localhost:5000/WeatherForecast' \
 
 ## Is this repo required for JWT validation with PingFederate?
 
-No.  The Microsoft.AspNetCore.Authentication.JwtBearer library is doing the heavy lifting.  That library is available as a NuGet package.  You could easily build this same package from scratch.
+No.  The Microsoft.AspNetCore.Authentication.JwtBearer library is doing the heavy lifting.  That library is available as a NuGet package.  To use this library in a your own project:
 
 ### Create a Project in Visual Studio 2022
 
@@ -101,7 +101,7 @@ Use NuGet to add the package Microsoft.AspNetCore.Authentication.JwtBearer
 
 ### Modify Program.cs
 
-ASP.NET 6.0 eliminates the Startup.cs.  Instead we will be working in Program.cs.
+ASP.NET 6.0 eliminated Startup.cs.  Instead we will be working in Program.cs.
 
 Include the JwtBearer library
 
