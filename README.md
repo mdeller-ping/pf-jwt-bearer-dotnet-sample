@@ -50,7 +50,7 @@ cd pf-jwt-bearer-dotnet-sample/pf-jwt-bearer-dotnet-sample
 
 The Issuer (aka Authority) and Audience values are hard coded in Program.cs.  Update these values with your real URLs
 
-```
+```C#
 .AddJwtBearer(options =>
 {
     options.Authority = "https://pingfederate:9031";
@@ -105,13 +105,13 @@ ASP.NET 6.0 eliminated Startup.cs.  Instead we will be working in Program.cs.
 
 Include the JwtBearer library
 
-```
+```C#
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 ```
 
 Specify the authentication mechanism
 
-```
+```C#
 builder.Services.AddAuthentication(opt => {
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -125,13 +125,13 @@ builder.Services.AddAuthentication(opt => {
 
 Enable Authentication
 
-```
+```C#
 app.UseAuthentication();
 ```
 
 The completed Program.cs
 
-```
+```C#
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
