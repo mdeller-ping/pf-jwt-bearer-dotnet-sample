@@ -23,10 +23,10 @@ We need an Access Token Manager of type JSON Web Token in PingFederate.  Default
 
 An OAuth Client with the grant type of Client Credentials is also required:
 
-Client ID: client_credentials
-Client Name: client_credentials
-Client Authentication: Client Secret
-Client Secret: 2FederateM0re
-Allowed Grant Types: Client Credentials
-Default Access Token Manager: jsonWebToken
+* Client ID: client_credentials
+* Client Name: client_credentials
+* Client Authentication: Client Secret
+* Client Secret: 2FederateM0re
+* Allowed Grant Types: Client Credentials
+* Default Access Token Manager: jsonWebToken
 
