@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "wKD4MG86BMsYzWsv6kx3jQQkcFACa3ERc3fk3MRCfU0=",
+  "Source": "pf-jwt-bearer-dotnet-sample",
+  "BasePath": "_content/pf-jwt-bearer-dotnet-sample",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
