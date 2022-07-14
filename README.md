@@ -1,11 +1,13 @@
 # pf-jwt-bearer-dotnet-sample
 
-Demonstrates using PingFederate as the JWT provider for an ASP.Net REST API
+Demonstrates using PingFederate as the JWT provider for an ASP.Net API.  This sample code uses Microsoft.AspNetCore.Authentication.JwtBearer
 
 ## Prerequisites
 
 * ASP.NET Core 6.0
 * PingFederate
+* curl
+* dotnet cli
 
 ## Assumptions
 
@@ -22,6 +24,7 @@ We need an Access Token Manager of type JSON Web Token in PingFederate.  Default
 * Instance Configuration - JWS Algorithm: RSA using SHA-256
 * Instance Configuration (Advanced) - Issuer Claim Value: https://auth.example.com
 * Instance Configuration (Advanced) - Audience Claim Value: http://localhost:5000
+* Access Token Attribute Contract - Extend the Contract: sub
 
 ## PingFederate OAuth Client
 
@@ -40,9 +43,9 @@ An OAuth Client with the grant type of Client Credentials is also required:
 git clone https://github.com/mdeller-ping/pf-jwt-bearer-dotnet-sample.git
 ```
 
-## Edit Program.cs
+## Edit pf-jwt-bearer-dotnet-sample/Program.cs
 
-The Authority (Issuer) and Audience are hard coded in Program.cs.  Update these values with your real URLs
+The Issuer (aka Authority) and Audience values are hard coded in pf-jwt-bearer-dotnet-sample/Program.cs.  Update these values with your real URLs
 
 ```
 .AddJwtBearer(options =>
@@ -54,8 +57,9 @@ The Authority (Issuer) and Audience are hard coded in Program.cs.  Update these 
 
 ## Run the sample
 
+Change to the directory with pf-jwt-bearer-dotnet-sample.csproj and run the project
+
 ```
-cd pf-jwt-bearer-dotnet-sample/pf-jwt-bearer-dotnet-sample
 dotnet run
 ```
 
@@ -65,16 +69,19 @@ In a different terminal window or command prompt:
 
 ```
 curl --location --request POST 'https://auth.example.com/as/token.oauth2' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'client_id=sampleClient' \
---data-urlencode 'client_secret=verySecretPasswordYouPick' \
---data-urlencode 'response_type=token' \
---data-urlencode 'grant_type=client_credentials'
+  --insecure \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'client_id=sampleClient' \
+  --data-urlencode 'client_secret=verySecretPasswordYouPick' \
+  --data-urlencode 'response_type=token' \
+  --data-urlencode 'grant_type=client_credentials'
 ```
 ## Use your Token
 
 ```
 curl -H 'Accept: application/json' \
+  --insecure \
+  --verbose \
   -H "Authorization: Bearer YOUR_JWT_FROM_PRIOR_STEP" \
-  http://localhost:5000/WeatherForecast --verbose
+  http://localhost:5000/WeatherForecast
 ```
