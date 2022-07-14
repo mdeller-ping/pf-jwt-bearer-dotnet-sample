@@ -41,7 +41,7 @@ An OAuth Client with the grant type of Client Credentials is also required:
 
 ## Clone this repository
 
-```
+```Shell
 git clone https://github.com/mdeller-ping/pf-jwt-bearer-dotnet-sample.git
 cd pf-jwt-bearer-dotnet-sample/pf-jwt-bearer-dotnet-sample
 ```
@@ -60,7 +60,7 @@ The Issuer (aka Authority) and Audience values are hard coded in Program.cs.  Up
 
 ## Run the sample
 
-```
+```Shell
 dotnet run
 ```
 
@@ -68,7 +68,7 @@ dotnet run
 
 In a different terminal window or command prompt:
 
-```
+```cURL
 curl --location --request POST 'https://pingfederate:9031/as/token.oauth2' \
   --insecure \
   --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -79,7 +79,7 @@ curl --location --request POST 'https://pingfederate:9031/as/token.oauth2' \
 ```
 ## Use your Token
 
-```
+```cURL
 curl --location --request GET 'http://localhost:5000/WeatherForecast' \
   --header 'Accept: application/json' \
   --header 'Authorization: Bearer YOUR_JWT_FROM_PRIOR_STEP' \
@@ -178,25 +178,25 @@ app.Run();
 
 Include the Authorization library
 
-```
+```C#
 using Microsoft.AspNetCore.Authorization;
 ```
 
 Change the following line:
 
-```
+```C#
     [HttpGet(Name = "GetWeatherForecast")]
 ```
 
 We need to include Authorize:
 
-```
+```C#
     [HttpGet(Name = "GetWeatherForecast"), Authorize]
 ```
 
 The completed Controllers/WeatherForecastController.cs
 
-```
+```C#
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
