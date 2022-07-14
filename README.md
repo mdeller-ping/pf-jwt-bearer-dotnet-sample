@@ -34,12 +34,27 @@ An OAuth Client with the grant type of Client Credentials is also required:
 * Allowed Grant Types: Client Credentials
 * Default Access Token Manager: sampleJWT
 
-## Clone and run this sample
-
-In a terminal window or command prompt:
+## Clone this repository
 
 ```
 git clone https://github.com/mdeller-ping/pf-jwt-bearer-dotnet-sample.git
+```
+
+## Edit Program.cs
+
+The Authority (Issuer) and Audience are hard coded in Program.cs.  Update these values with your real URLs
+
+```
+.AddJwtBearer(options =>
+{
+    options.Authority = "https://auth.example.com";
+    options.Audience = "http://localhost:5000";
+});
+```
+
+## Run the sample
+
+```
 cd pf-jwt-bearer-dotnet-sample/pf-jwt-bearer-dotnet-sample
 dotnet run
 ```
