@@ -36,9 +36,11 @@ An OAuth Client with the grant type of Client Credentials is also required:
 
 ## Get a Token
 
-```curl --location --request POST 'https://auth.example.com/as/token.oauth2' \
+```
+curl --location --request POST 'https://auth.example.com/as/token.oauth2' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'client_id=sampleClient' \
 --data-urlencode 'client_secret=verySecretPasswordYouPick' \
 --data-urlencode 'response_type=token' \
---data-urlencode 'grant_type=client_credentials'```
+--data-urlencode 'grant_type=client_credentials'
+```
