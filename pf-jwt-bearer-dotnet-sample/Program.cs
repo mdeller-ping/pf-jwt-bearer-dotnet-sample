@@ -10,7 +10,7 @@ builder.Services.AddAuthentication(opt => {
 })
 .AddJwtBearer(options =>
 {
-    options.Authority = "https://localhost:9031";
+    options.Authority = "https://pingfederate:9031";
     options.Audience = "http://localhost:5000";
 });
 

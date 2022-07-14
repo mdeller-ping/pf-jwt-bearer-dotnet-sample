@@ -11,7 +11,9 @@ Demonstrates using PingFederate as the JWT provider for an ASP.Net API.  This sa
 
 ## Assumptions
 
-Your PingFederate runtime is available at the URL https://localhost:9031.  You are running this sample dotnet application locally, and it will be available at http://localhost:5000.  Update accordingly.
+Your PingFederate runtime is available at the URL https://pingfederate:9031.  You are running this sample dotnet application locally, and it will be available at http://localhost:5000.  Update accordingly.
+
+A valid SSL certificate is assigned to your PingFederate instance.  The dotnet application will fail to validate your JWT without a signed certificate.
 
 ## PingFederate Access Token Manager
 
@@ -22,7 +24,7 @@ We need an Access Token Manager of type JSON Web Token in PingFederate.  Default
 * Type - Type: JSON Web Tokens
 * Instance Configuration - Use Centralized Signing Key: Enabled
 * Instance Configuration - JWS Algorithm: RSA using SHA-256
-* Instance Configuration (Advanced) - Issuer Claim Value: https://localhost:9031
+* Instance Configuration (Advanced) - Issuer Claim Value: https://pingfederate:9031
 * Instance Configuration (Advanced) - Audience Claim Value: http://localhost:5000
 * Access Token Attribute Contract - Extend the Contract: sub
 
@@ -41,23 +43,22 @@ An OAuth Client with the grant type of Client Credentials is also required:
 
 ```
 git clone https://github.com/mdeller-ping/pf-jwt-bearer-dotnet-sample.git
+cd pf-jwt-bearer-dotnet-sample/pf-jwt-bearer-dotnet-sample
 ```
 
-## Edit pf-jwt-bearer-dotnet-sample/Program.cs
+## Edit Program.cs
 
-The Issuer (aka Authority) and Audience values are hard coded in pf-jwt-bearer-dotnet-sample/Program.cs.  Update these values with your real URLs
+The Issuer (aka Authority) and Audience values are hard coded in Program.cs.  Update these values with your real URLs
 
 ```
 .AddJwtBearer(options =>
 {
-    options.Authority = "https://localhost:9031";
+    options.Authority = "https://pingfederate:9031";
     options.Audience = "http://localhost:5000";
 });
 ```
 
 ## Run the sample
-
-Change to the directory with pf-jwt-bearer-dotnet-sample.csproj and run the project
 
 ```
 dotnet run
@@ -68,7 +69,7 @@ dotnet run
 In a different terminal window or command prompt:
 
 ```
-curl --location --request POST 'https://localhost:9031/as/token.oauth2' \
+curl --location --request POST 'https://pingfederate:9031/as/token.oauth2' \
   --insecure \
   --header 'Content-Type: application/x-www-form-urlencoded' \
   --data-urlencode 'client_id=sampleClient' \
